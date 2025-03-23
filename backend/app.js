@@ -66,6 +66,7 @@ app.use((req, res, next) => {
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/futsalCourt", futsalCourtRouter);
+app.use("/api/futsalCourts", futsalCourtRouter); // Duplicate - Consider removing
 app.use("/booking", bookingsRouter);
 app.use("/tournaments", tournamentRouter);
 app.use("/chat", chatRoutes);

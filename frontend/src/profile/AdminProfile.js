@@ -1,6 +1,6 @@
-import { Box } from "@mui/system";
+import { Box, Button } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
-import { getAdminById } from "../api-helpers/api-helpers";
+import { getAdminById, deleteFutsalCourtById } from "../api-helpers/api-helpers";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
 
@@ -12,6 +12,20 @@ const AdminProfile = () => {
       .then((res) => setAdmin(res.admin))
       .catch((err) => console.log(err));
   }, []);
+
+const handleDelete = (courtId) => {
+  console.log("Deleting court with ID:", courtId);
+  deleteFutsalCourtById(courtId)
+    .then(() => {
+      setAdmin((prevAdmin) => ({
+        ...prevAdmin,
+        addedFutsalCourts: prevAdmin.addedFutsalCourts.filter(
+          (court) => court._id !== courtId
+        ),
+      }));
+    })
+    .catch((err) => console.error("Error deleting court:", err));
+};
 
   return (
     <Box
@@ -99,11 +113,18 @@ const AdminProfile = () => {
               ⚽ Added Futsal Courts
             </Typography>
 
-            <Box sx={{ margin: "auto", display: "flex", flexDirection: "column", width: "90%" }}>
+            <Box
+              sx={{
+                margin: "auto",
+                display: "flex",
+                flexDirection: "column",
+                width: "90%",
+              }}
+            >
               <List>
-                {admin.addedFutsalCourts.map((futsalCourt, index) => (
+                {admin.addedFutsalCourts.map((futsalCourt) => (
                   <ListItem
-                    key={index}
+                    key={futsalCourt._id}
                     sx={{
                       backgroundColor: "#ff6600",
                       color: "white",
@@ -120,13 +141,30 @@ const AdminProfile = () => {
                       },
                     }}
                   >
-                    <ListItemText primary={`🏆 Futsal Court: ${futsalCourt.title}`} />
                     <ListItemText
-                      primary={`📅 Opening Date: ${new Date(futsalCourt.openingDate).toDateString()}`}
+                      primary={`🏆 Futsal Court: ${futsalCourt.title}`}
                     />
-                    <ListItemText primary={`📜 Description: ${futsalCourt.description}`} />
-                    <ListItemText primary={`📍 Locations: ${futsalCourt.locations?.join(", ")}`} />
-                    <ListItemText primary={`🌐 Website: ${futsalCourt.websiteUrl}`} />
+                    <ListItemText
+                      primary={`📅 Opening Date: ${new Date(
+                        futsalCourt.openingDate
+                      ).toDateString()}`}
+                    />
+                    <ListItemText
+                      primary={`📜 Description: ${futsalCourt.description}`}
+                    />
+                    <ListItemText
+                      primary={`📍 Locations: ${futsalCourt.locations?.join(", ")}`}
+                    />
+                    <ListItemText
+                      primary={`🌐 Website: ${futsalCourt.websiteUrl}`}
+                    />
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => handleDelete(futsalCourt._id)}
+                    >
+                      Delete
+                    </Button>
                   </ListItem>
                 ))}
               </List>

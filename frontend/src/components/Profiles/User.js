@@ -407,14 +407,13 @@ const User = () => {
                   bookings.map((booking) => (
                     <BookingItem key={booking._id}>
                       <BookingHeader>
-                        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                          {booking.futsalCourt.title}
+                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                          {booking.futsalCourt?.title || "Court Unavailable"}
                         </Typography>
                         <DeleteButton onClick={() => handleDelete(booking._id)}>
                           <DeleteForeverOutlined />
                         </DeleteButton>
                       </BookingHeader>
-                      
                       <BookingDetails>
                         <BookingText>
                           📅 Date: {new Date(booking.date).toLocaleDateString('en-US', {
@@ -428,10 +427,10 @@ const User = () => {
                           ⏰ Time: {booking.timeSlot}
                         </BookingText>
                         <BookingText>
-                          📍 Location: {booking.futsalCourt.locations?.[0] || "Location not specified"}
+                          📍 Location: {booking.futsalCourt?.locations?.[0] || "Location not specified"}
                         </BookingText>
                         <BookingText>
-                          💰 Price: ${booking.futsalCourt.price}
+                          💰 Price: ${booking.futsalCourt?.price || 0}
                         </BookingText>
                         <BookingStatus>
                           {new Date(booking.date) > new Date() ? "Upcoming" : "Past Booking"}

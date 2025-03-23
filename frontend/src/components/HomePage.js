@@ -97,9 +97,9 @@ const TournamentCard = ({ tournament, onRegister, isAuthenticated }) => {
               color: 'white'
             }}
           />
-          <Typography 
-            variant="subtitle1" 
-            sx={{ 
+          <Typography
+            variant="subtitle1"
+            sx={{
               fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
@@ -111,9 +111,9 @@ const TournamentCard = ({ tournament, onRegister, isAuthenticated }) => {
         </Box>
 
         {/* Tournament Info */}
-        <Typography 
-          variant="body1" 
-          sx={{ 
+        <Typography
+          variant="body1"
+          sx={{
             mb: 3,
             lineHeight: 1.6,
             fontWeight: 500
@@ -284,7 +284,7 @@ const HomePage = () => {
   };
 
   const handleViewMore = () => {
-    setVisibleTournaments(prev => 
+    setVisibleTournaments(prev =>
       prev === tournaments.length ? 3 : tournaments.length
     );
   };

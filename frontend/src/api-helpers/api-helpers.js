@@ -49,6 +49,20 @@ export const resetPassword = async (email, newPassword) => {
   }
 };
 
+export const deleteFutsalCourtById = async (courtId) => {
+  try {
+    console.log(`Attempting to delete court with ID: ${courtId}`);
+    const response = await axios.delete(`http://localhost:5000/api/futsalCourts/${courtId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error during deleteFutsalCourtById:", error);
+    throw error;
+  }
+};
+
+
+
+
 export const getAllFutsalCourts = async () => {
   try {
     const res = await API.get("/futsalCourt"); 

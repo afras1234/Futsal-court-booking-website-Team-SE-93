@@ -98,6 +98,19 @@ export const getAllFutsalCourts = async (req, res, next) => {
   }
 };
 
+export const deleteFutsalCourt = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCourt = await FutsalCourt.findByIdAndDelete(id);
+    if (!deletedCourt) {
+      return res.status(404).json({ message: "Futsal court not found" });
+    }
+    res.status(200).json({ message: "Futsal court deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};
+
 /**
  * Get a futsal court by ID
  */
