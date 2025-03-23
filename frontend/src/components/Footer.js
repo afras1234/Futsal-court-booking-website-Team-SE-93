@@ -34,16 +34,16 @@ const Footer = () => {
               Your premier destination for futsal court bookings. Experience seamless booking and world-class facilities at ArenaX - where passion meets the pitch.
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://www.facebook.com/" target="_blank">
+              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://www.facebook.com/share/1A4YusA6RH/?mibextid=wwXIfr" target="_blank">
                 <FacebookIcon />
               </IconButton>
-              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://twitter.com/" target="_blank">
+              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://x.com/arenax28?s=21/" target="_blank">
                 <TwitterIcon />
               </IconButton>
-              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://www.instagram.com/" target="_blank">
+              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://www.instagram.com/arenax2025?igsh=N2t2ZXY0N2ZxdmFm&utm_source=qr" target="_blank">
                 <InstagramIcon />
               </IconButton>
-              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://www.linkedin.com/" target="_blank">
+              <IconButton size="small" sx={{ color: '#ff5722' }} component="a" href="https://www.linkedin.com/in/arenax-futsal-courts-006229358" target="_blank">
                 <LinkedInIcon />
               </IconButton>
             </Box>
