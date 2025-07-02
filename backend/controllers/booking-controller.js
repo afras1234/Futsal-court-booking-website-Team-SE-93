@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 import Bookings from "../models/Bookings.js";
 import FutsalCourt from "../models/FutsalCourt.js";
 import User from "../models/User.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const newBooking = async (req, res, next) => {
   const { futsalCourt, date, timeSlot, user } = req.body;
