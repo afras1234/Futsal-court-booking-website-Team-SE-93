@@ -1,0 +1,55 @@
+import Tournament from "../models/Tournament.js";
+
+// Create new tournament
+export const createTournament = async (req, res) => {
+  try {
+    const tournament = new Tournament(req.body);
+    await tournament.save();
+    res.status(201).json({ message: "Tournament created", tournament });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Get all tournaments
+export const getAllTournaments = async (req, res) => {
+  try {
+    const tournaments = await Tournament.find().populate("courtId", "title location");
+    res.status(200).json(tournaments);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Get tournament by ID
+export const getTournamentById = async (req, res) => {
+  try {
+    const tournament = await Tournament.findById(req.params.id).populate("courtId", "title");
+    if (!tournament) {
+      return res.status(404).json({ message: "Tournament not found" });
+    }
+    res.status(200).json(tournament);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Update tournament
+export const updateTournament = async (req, res) => {
+  try {
+    const updated = await Tournament.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json({ message: "Tournament updated", updated });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Delete tournament
+export const deleteTournament = async (req, res) => {
+  try {
+    await Tournament.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Tournament deleted" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
