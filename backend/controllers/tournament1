@@ -83,3 +83,8 @@ const tournamentSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 export default mongoose.model("Tournament", tournamentSchema);
+
+//#endregion
+import { registerForTournament } from "../controllers/tournament-controller.js";
+
+router.post("/register/:id", registerForTournament); // Register user to tournament
