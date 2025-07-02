@@ -49,3 +49,17 @@ const tournamentSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 export default mongoose.model("Tournament", tournamentSchema);
+
+//#endregion
+export const getTournamentParticipants = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const tournament = await Tournament.findById(id).populate("participants.userId", "name email");
+      if (!tournament) {
+        return res.status(404).json({ message: "Tournament not found" });
+      }
+      res.status(200).json(tournament.participants);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
